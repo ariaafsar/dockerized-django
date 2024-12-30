@@ -1,14 +1,14 @@
 services:
   django:
     container_name: "hello_world"
-    build: ./helloworld
+    build: ./hello_world
     ports:
       - "8000:8000"
-    env_file: ./.secrets/backend/.env
+    env_file: ./hello_world/.env
     networks:
       - proj_network
-    depends_on:
-      - postgres
+#   depends_on:
+#      - postgres
 
 # nginx:
 #   container_name: "kelassor-nginx"
@@ -23,22 +23,22 @@ services:
 #     - django
 #      - django_front
 
-  postgres:
-    container_name: "kelaasor-posgres"
-    image: postgres:latest 
-    environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: mysecretpassword
-    ports: 
-      - "5433:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    networks:
-      - proj_network
+# postgres:
+#   container_name: "hello_posgres"
+#   image: postgres:latest 
+#   environment:
+#     POSTGRES_DB: postgres
+#     POSTGRES_USER: postgres
+#     POSTGRES_PASSWORD: mysecretpassword
+#   ports: 
+#     - "5433:5432"
+#   volumes:
+#     - postgres_data:/var/lib/postgresql/data
+#   networks:
+#     - proj_network
 
 networks:
   proj_network:
 
-volumes:
-  postgres_data:
+#volumes:
+#  postgres_data:
